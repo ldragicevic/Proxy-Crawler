@@ -64,44 +64,49 @@ def create_min_max_year_query():
 
 
 def main():
-    opt_k, opt_features = select_options(OPTIONS)
-    db = DbUtil(host=cn.DB_HOST, user=cn.DB_USER, password=cn.DB_PASS, database=cn.DB_DATABASE)
+    try:
 
-    min_max = db.execute(create_min_max_year_query())[0]
-    min, max = min_max.get('_min'), min_max.get('_max')
+        opt_k, opt_features = select_options(OPTIONS)
+        db = DbUtil(host=cn.DB_HOST, user=cn.DB_USER, password=cn.DB_PASS, database=cn.DB_DATABASE)
 
-    query = create_db_query(opt_features, min, max)
+        min_max = db.execute(create_min_max_year_query())[0]
+        min, max = min_max.get('_min'), min_max.get('_max')
 
-    result = db.execute(query)
+        query = create_db_query(opt_features, min, max)
 
-    # bag of words
-    if opt_features.__contains__('genre') or opt_features.__contains__('style'):
+        result = db.execute(query)
 
-        vectorizer = CountVectorizer(binary=True)
-        vectorizer.fit_transform([r['text'] for r in result])
+        # bag of words
+        if opt_features.__contains__('genre') or opt_features.__contains__('style'):
 
-        for r in result:
-            r['text'] = vectorizer.transform([r['text']]).toarray()[0]
-            if 'year' in opt_features:
-                r['text'] = np.append(r['text'], r['year'])
-            if 'rating' in opt_features:
-                r['text'] = np.append(r['text'], r['rating'])
+            vectorizer = CountVectorizer(binary=True)
+            vectorizer.fit_transform([r['text'] for r in result])
 
-    # year or rating selected only
-    else:
+            for r in result:
+                r['text'] = vectorizer.transform([r['text']]).toarray()[0]
+                if 'year' in opt_features:
+                    r['text'] = np.append(r['text'], r['year'])
+                if 'rating' in opt_features:
+                    r['text'] = np.append(r['text'], r['rating'])
 
-        for r in result:
-            if 'year' in opt_features and 'rating' in opt_features:
-                r['text'] = np.array([r['year'], r['rating']])
-            elif 'year' in opt_features:
-                r['text'] = np.array([r['year']])
-            else:
-                r['text'] = np.array([r['rating']])
+        # year or rating selected only
+        else:
 
-    x_train = [r['text'] for r in result]
+            for r in result:
+                if 'year' in opt_features and 'rating' in opt_features:
+                    r['text'] = np.array([r['year'], r['rating']])
+                elif 'year' in opt_features:
+                    r['text'] = np.array([r['year']])
+                else:
+                    r['text'] = np.array([r['rating']])
 
-    model = KMeans(n_clusters=opt_k, random_state=0)
-    model.fit(x_train)
+        x_train = [r['text'] for r in result]
+
+        model = KMeans(n_clusters=opt_k, random_state=0)
+        model.fit(x_train)
+
+    except Exception as e:
+        print("Error code: {err_code}".format(err_code=str(e)))
 
 
 if __name__ == '__main__':
