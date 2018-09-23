@@ -5,14 +5,14 @@ sys.path.append('../')
 from worker import Worker
 from db_worker import DbWorker
 from actions import ActionQueue
-from helper import RequestHelper
+from helper import ProxyHelper, PROXY_LIST
 import constants as cn
 
 
 def main():
     actions = ActionQueue()
     db_actions = ActionQueue()
-    request_helper = RequestHelper()
+    request_helper = ProxyHelper(PROXY_LIST)
 
     actions.put({
         'url': cn.CRAWL_START_URL,

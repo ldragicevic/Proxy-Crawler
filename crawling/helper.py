@@ -1,8 +1,9 @@
 import queue
 import random
+
 from fake_useragent import UserAgent
 
-proxy_list = ["200.229.195.185:8080", "200.229.195.163:8080", "200.196.231.131:8080", "200.229.193.102:8080",
+PROXY_LIST = ["200.229.195.185:8080", "200.229.195.163:8080", "200.196.231.131:8080", "200.229.193.102:8080",
               "213.136.87.65:80", "177.53.140.86:8799", "66.70.190.244:8080", "138.197.139.135:3128",
               "167.114.188.3:8080", "138.197.165.71:8080", "142.93.254.222:80", "192.99.226.30:80", "35.236.68.63:8080",
               "142.93.11.154:8080", "80.211.181.37:3128", "80.211.180.201:80", "80.211.97.229:8080",
@@ -50,30 +51,25 @@ proxy_list = ["200.229.195.185:8080", "200.229.195.163:8080", "200.196.231.131:8
               "138.197.157.68:3128"]
 
 
-def get_proxies():
-    random.shuffle(proxy_list)
-    temp = queue.Queue()
-    for proxy in proxy_list:
-        temp.put(proxy)
-    return temp
+class ProxyHelper:
 
-
-class RequestHelper:
-
-    def __init__(self):
-        self.proxies = get_proxies()
+    def __init__(self, proxy_list):
+        self.proxies = queue.Queue()
+        random.shuffle(proxy_list)
+        [self.proxies.put(proxy) for proxy in proxy_list]
 
     def put(self, proxy):
         self.proxies.put(proxy)
 
     def get(self, hide=True):
-        ip = self.proxies.get()
-        proxy = {'http': 'http://' + ip} if hide else {}
-        user_agent = {'user-agent': UserAgent().random}
-        return {'proxy': proxy, 'user-agent': user_agent, 'ip': ip}
+        proxy_ip = self.proxies.get()
+        return {
+            'proxy': {'http': 'http://' + proxy_ip} if hide else {},
+            'user-agent': {'user-agent': UserAgent().random},
+            'ip': proxy_ip
+        }
 
-# Script @ https://hidemyna.me/en/proxy-list/?maxtime=1000&type=h&anon=34&start=64#list
-#
+# JS to get proxy run @ https://hidemyna.me/en/proxy-list/?maxtime=1000&type=h&anon=34&start=64#list
 #
 # ips = $x('//table//td[1]/text()')
 # ports = $x('//table//td[2]/text()')
