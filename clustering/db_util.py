@@ -2,20 +2,22 @@ import sys
 
 sys.path.append('../')
 
-import constants as cn
 from mysql import connector
 
 
 class DbUtil:
 
-    def __init__(self, ):
-        try:
-            self.my_db = connector.connect(host=cn.DB_HOST, user=cn.DB_USER, passwd=cn.DB_PASS, database=cn.DB_DATABASE)
-        except Exception as e:
-            print('> KMeans/DbUtil: database connection fail: {err_msg}'.format(err_msg=str(e)))
+    def __init__(self, host, user, password, database):
+        self.my_db = connector.connect(host=host, user=user, password=password, database=database)
 
     def execute(self, query):
         cursor = self.my_db.cursor()
         cursor.execute(query)
-        result = list(map(lambda x: x[0], cursor.fetchall()))
+
+        result = []
+        columns = [d[0] for d in cursor.description]
+
+        for row in cursor.fetchall():
+            result.append(dict(zip(columns, list(row))))
+
         return result
