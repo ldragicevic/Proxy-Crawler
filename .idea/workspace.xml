@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="471f837b-34d4-4ff0-a09a-daa2e6ab9220" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/crawling/helper.py" afterPath="$PROJECT_DIR$/crawling/helper.py" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/crawling/helper.py" afterPath="$PROJECT_DIR$/crawling/proxy_helper.py" />
       <change beforePath="$PROJECT_DIR$/crawling/main.py" afterPath="$PROJECT_DIR$/crawling/main.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,21 +42,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/crawling/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+            <state relative-caret-position="230">
+              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="helper.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/crawling/helper.py">
+      <file leaf-file-name="proxy_helper.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/crawling/proxy_helper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="73" column="35" lean-forward="false" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
+            <state relative-caret-position="357">
+              <caret line="77" column="28" lean-forward="false" selection-start-line="77" selection-start-column="28" selection-end-line="77" selection-end-column="28" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
                 <element signature="e#79#4946#0" expanded="false" />
@@ -89,8 +90,8 @@
         <option value="$PROJECT_DIR$/plotting/db_queries.py" />
         <option value="$PROJECT_DIR$/clustering/db_util.py" />
         <option value="$PROJECT_DIR$/clustering/main.py" />
-        <option value="$PROJECT_DIR$/crawling/main.py" />
         <option value="$PROJECT_DIR$/crawling/helper.py" />
+        <option value="$PROJECT_DIR$/crawling/main.py" />
       </list>
     </option>
   </component>
@@ -172,7 +173,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="psz_project" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/crawling/helper.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Luka\Desktop\psz_project\psz_project\crawling\proxy_helper.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -302,7 +303,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crawling/helper.py">
+    <entry file="file://$PROJECT_DIR$/crawling/proxy_helper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
           <caret line="16" column="53" lean-forward="false" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
@@ -359,14 +360,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crawling/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/crawling/db_worker.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
@@ -385,14 +378,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crawling/helper.py">
+    <entry file="file://$PROJECT_DIR$/crawling/proxy_helper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="73" column="35" lean-forward="false" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
+        <state relative-caret-position="357">
+          <caret line="77" column="28" lean-forward="false" selection-start-line="77" selection-start-column="28" selection-end-line="77" selection-end-column="28" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
             <element signature="e#79#4946#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawling/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

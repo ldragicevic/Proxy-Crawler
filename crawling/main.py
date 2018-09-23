@@ -5,7 +5,7 @@ sys.path.append('../')
 from worker import Worker
 from db_worker import DbWorker
 from actions import ActionQueue
-from helper import ProxyHelper, PROXY_LIST
+from proxy_helper import ProxyHelper, PROXY_LIST
 import constants as cn
 
 
