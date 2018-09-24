@@ -1,29 +1,30 @@
 import threading
 import mysql.connector
-from time import sleep
 import constants as cn
+
+from time import sleep
 
 
 class DbWorker(threading.Thread):
 
-    def __init__(self, db_actions, host, user, passwd, database):
+    def __init__(self, db_queue, host, user, password, database):
         super(DbWorker, self).__init__()
-        self.db_actions = db_actions
-        self.setDaemon(True)
+        self.db_queue = db_queue
         try:
-            self.my_db = mysql.connector.connect(host=host, user=user, password=passwd, database=database)
+            self.my_db = mysql.connector.connect(host=host, user=user, password=password, database=database)
         except Exception as e:
-            print('> DB Worker could not connect to Database. {err_msg}'.format(err_msg=str(e)))
+            print('DB Worker - fail db connecting - {err_msg}'.format(err_msg=str(e)))
+        self.setDaemon(True)
 
     def run(self):
 
-        print("> DB Worker is active")
+        print("DB Worker is active")
 
         while True:
 
-            action = self.db_actions.get_next()
+            action = self.db_queue.get_next()
             if action is None:
-                print("DB Worker sleeping no job found.")
+                print("DB Worker - no job available")
                 sleep(cn.DB_THREAD_NO_JOB_WAIT_SEC)
                 continue
 
@@ -44,9 +45,7 @@ class DbWorker(threading.Thread):
                 cursor.execute(sql_query)
                 self.my_db.commit()
             except Exception as e:
-                print('$' * 50)
-                print('$' * 50)
-                print('db error: {error}'.format(error=str(e)))
-                print('sql query: {query}'.format(query=sql_query))
-                print('$' * 50)
-                print('$' * 50)
+                print('=' * 50)
+                print('DB Worker error - {error}'.format(error=str(e)))
+                print('DB Worker SQL query - {query}'.format(query=sql_query))
+                print('=' * 50)

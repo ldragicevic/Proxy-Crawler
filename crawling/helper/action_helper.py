@@ -10,7 +10,6 @@ class ActionQueue:
         try:
             return self.actions.get_nowait()
         except queue.Empty as e:
-            print('Warning - fetch empty action queue. {err_code}'.format(err_code=str(e)))
             return None
 
     def put(self, action):

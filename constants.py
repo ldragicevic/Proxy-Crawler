@@ -1,4 +1,5 @@
 BASE_URL = 'https://www.discogs.com'
+DEFAULT_PARSER = 'lxml'
 
 #
 # Action Descriptors
@@ -15,14 +16,14 @@ TYPE_RELEASE_INSERT = 5
 #
 
 CRAWL_START_URL = 'https://www.discogs.com/search/?format=&track=&barcode=&genre=&anv=&catno=&year=1890-2008&contributor=&advanced=1&style=&matrix=&title=&country=serbia&artist=&label=&credit=&submitter=&type=all&page=1'
-PROXY_THREADS_COUNT = 6
-DB_THREADS_COUNT = 4
+PROXY_THREADS_COUNT = 2
+DB_THREADS_COUNT = 3
 
 #
 # Threading
 #
 
-DB_THREAD_NO_JOB_WAIT_SEC = 3
+DB_THREAD_NO_JOB_WAIT_SEC = 5
 W_THREAD_NO_JOB_WAIT_SEC = 1
 W_THREAD_SLEEP_BEGIN_SEC = 0.5
 W_THREAD_SLEEP_END_SEC = 0.8
